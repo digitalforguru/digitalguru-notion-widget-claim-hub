@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DigitalGuru Widget Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div class="hub-shell">
+
+  <div class="hub-header">
+    <h1>DigitalGuru Widget Hub ✧</h1>
+    <p>unlock your Notion widget library</p>
+  </div>
+
+  <div id="accessBox" class="access-card">
+    <p class="access-title">enter your access code</p>
+
+    <input
+      id="accessInput"
+      class="access-input"
+      placeholder="ex: DGALL2026"
+      autocomplete="off"
+    />
+
+    <button id="unlockBtn" class="unlock-btn">
+      unlock my widgets .ᐟ
+    </button>
+
+    <p id="accessMessage" class="access-message"></p>
+  </div>
+
+  <div id="widgetLibrary" class="widget-library hidden">
+    <div class="library-title">
+      your widgets ✧
+    </div>
+
+    <div id="widgetGrid" class="widget-grid"></div>
+  </div>
+
+  <div class="footer-links">
+    <a href="https://stan.store/digitalforguru" target="_blank">shop digitalguru</a>
+    <span>•</span>
+    <a href="https://tiktok.com/@digitalguru" target="_blank">socials</a>
+  </div>
+
+</div>
+
+<script src="hub.js"></script>
+</body>
+</html>

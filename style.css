@@ -373,3 +373,44 @@ button,
 }
 
 
+.widget-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.widget-preview {
+  position: absolute;
+
+  right: -10px;
+  bottom: -14px;
+
+  width: 125px;
+
+  border-radius: 22px;
+
+  opacity: 0.96;
+
+  pointer-events: none;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.28),
+    0 0 0 1px rgba(255,255,255,0.03);
+
+  transform: rotate(-6deg);
+
+  transition:
+    transform 0.24s ease,
+    opacity 0.24s ease;
+}
+
+.widget-card:hover .widget-preview {
+  transform: rotate(-3deg) scale(1.04);
+  opacity: 1;
+}
+.widget-card:nth-child(2n) .widget-preview {
+  transform: rotate(5deg);
+}
+
+.widget-card:nth-child(3n) .widget-preview {
+  transform: rotate(-2deg);
+}

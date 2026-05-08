@@ -3,70 +3,80 @@ const widgets = [
     key: "calendar",
     title: "Calendar Widget",
     label: "monthly Notion calendar",
-    status: ["planning", "builder included"],
+    status: ["new", "monthly", "ipad ☑"],
+    preview: "calendar-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-calendar-widget/"
   },
   {
     key: "journal",
     title: "Journal Widget",
-    label: "daily digital journal",
-    status: ["new", "cloud save"],
+    label: "daily digital Notion journal with prompts",
+    status: ["new", "cloud save", "ipad ☑"],
+    preview: "journal-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-journal-widget/"
   },
   {
     key: "clock",
     title: "Live Clock Widget",
-    label: "real-time clock",
-    status: ["simple", "ipad ready"],
+    label: "real-time Notion clock",
+    status: ["new", "popular", "ipad ☑"],
+    preview: "clock-preview.png",
     link: "https://digitalforguru.github.io/digitialgurus-notion-live-clock-widget/"
   },
   {
     key: "affirmations",
     title: "Daily Affirmation Widget",
-    label: "soft daily affirmations",
-    status: ["wellness", "daily"],
+    label: "random daily Notion affirmations",
+    status: ["new", "wellness", "ipad ☑"],
+    preview: "affirmation-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-affirmations-widget/"
   },
   {
     key: "weekly-weather",
     title: "Weekly Weather Widget",
-    label: "7-day forecast",
-    status: ["weather", "builder included"],
+    label: "7-day live forecast made for Notion embeds",
+    status: ["new", "weather", "#1 THIS WEEK", "ipad ☑"],
+    preview: "weekly-weather-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-weekly-weather-widget/"
   },
   {
     key: "countdown",
     title: "Countdown Widget",
-    label: "count down to anything",
-    status: ["popular", "customizable"],
+    label: "create a Notion countdown for anything (includes 20+ custom icons)",
+    status: ["new", "popular", "icons", "ipad ☑"],
+    preview: "countdown-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-countdown-widget/"
   },
   {
     key: "mood",
     title: "Mood Tracker Widget",
-    label: "weekly mood tracker",
-    status: ["cloud save", "ipad optimized"],
+    label: "weekly mood tracker made for Notion (includes yearly mood grid log)",
+    status: ["new", "cloud save", "ipad ☑"],
+    preview: "mood-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-mood-tracker-widget/"
   },
   {
     key: "vision-board",
     title: "Vision Board Widget",
-    label: "mini aesthetic board",
-    status: ["aesthetic", "visual"],
+    label: "customizable vision board made for Notion (includes custom stickers)",
+    status: ["new", "popular", "stickers" "ipad ☑"],
+    preview: "vision-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-grid-vision-board-widget/"
   },
   {
     key: "horoscope",
     title: "Horoscope Widget",
-    label: "daily zodiac vibes",
-    status: ["daily", "fun"],
+    label: "daily horoscope made for Notion",
+    status: ["new", "wellness", "ipad ☑"],
+    preview: "horoscope-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-horoscope-widget/"
   },
   {
     key: "weather",
-    title: "Weather Widget",
-    label: "current weather card",
-    status: ["weather", "live"],
+    title: "Live Weather Widget",
+    label: "live weather each day built for Notion",
+    status: ["new", "weather", "live", "ipad ☑"],
+    preview: "weather-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-weather-widget/"
   }
 ];
@@ -129,6 +139,7 @@ function renderWidgets(unlockedKeys = []) {
 
       <div class="widget-card-title">${widget.title}</div>
       <div class="widget-card-label">${widget.label}</div>
+      <img class="widget-preview" src="${widget.preview}" alt="">
     `;
 
     widgetGrid.appendChild(card);

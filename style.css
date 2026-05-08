@@ -82,10 +82,16 @@ body {
 .steps-strip span {
   padding: 7px 12px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.72);
+
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.78);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
   font-size: 11px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.05);
-  opacity: 0.72;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+
+  opacity: 1;
 }
 
 .access-card {
@@ -221,17 +227,25 @@ button,
 .widget-card::before {
   content: "✧ widget";
   width: fit-content;
+
   padding: 4px 9px;
   border-radius: 999px;
-  background: rgba(244,223,235,0.65);
+
+  background: rgba(244,223,235,0.12);
+  color: rgba(255,255,255,0.72);
+
+  border: 1px solid rgba(244,223,235,0.18);
+
   font-size: 10px;
-  opacity: 0.75;
+  opacity: 1;
 }
 
 .widget-card:hover {
   transform: translateY(-4px) scale(1.015);
-  background: rgba(255,255,255,0.86);
-  box-shadow: 0 22px 48px rgba(0,0,0,0.11);
+
+  background: rgba(255,255,255,0.08);
+
+  box-shadow: 0 22px 48px rgba(0,0,0,0.26);
 }
 
 .widget-card-title {
@@ -303,4 +317,27 @@ button,
   box-shadow:
     0 12px 30px rgba(0,0,0,0.22),
     inset 0 1px 0 rgba(255,255,255,0.03);
+}
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.status-pill,
+.lock-pill {
+  width: fit-content;
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  line-height: 1;
+
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.72);
+
+  border: 1px solid rgba(255,255,255,0.08);
 }

@@ -59,7 +59,7 @@ const widgets = [
     key: "vision-board",
     title: "Vision Board Widget",
     label: "customizable vision board made for Notion (includes custom stickers)",
-    status: ["new", "popular", "stickers" "ipad ☑"],
+    status: ["new", "popular", "stickers", "ipad ☑"],
     preview: "vision-preview.png",
     link: "https://digitalforguru.github.io/digitalgurus-notion-grid-vision-board-widget/"
   },
@@ -126,7 +126,7 @@ function renderWidgets(unlockedKeys = []) {
 
     card.innerHTML = `
       <div class="status-row">
-        ${widget.status.map(tag => `<span class="status-pill">${tag}</span>`).join("")}
+        ${widget.status.map(tag => `<span class="status-pill">${tag}</span>`).join(" ")}
         <span class="lock-pill">
   <img 
     class="lock-icon" 

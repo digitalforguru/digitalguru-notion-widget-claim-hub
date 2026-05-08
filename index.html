@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DigitalGuru Widget Hub</title>
+  <title>DigitalGuru Widget Studio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -11,10 +11,24 @@
 
 <div class="hub-shell">
 
-  <div class="hub-header">
-    <h1>DigitalGuru Widget Hub ✧</h1>
-    <p>unlock your Notion widget library</p>
-  </div>
+  <section class="hero-card">
+    <img src="logo.png" alt="DigitalGuru logo" class="logo" />
+
+    <p class="eyebrow">10 notion widgets available ✧</p>
+
+    <h1>DigitalGuru Widget Studio</h1>
+
+    <p class="hero-subtitle">
+      unlock your soft, customizable Notion widgets in one cozy place
+    </p>
+
+    <div class="steps-strip">
+      <span>enter code</span>
+      <span>choose widget</span>
+      <span>customize</span>
+      <span>paste into notion</span>
+    </div>
+  </section>
 
   <div id="accessBox" class="access-card">
     <p class="access-title">enter your access code</p>
@@ -34,10 +48,7 @@
   </div>
 
   <div id="widgetLibrary" class="widget-library hidden">
-    <div class="library-title">
-      your widgets ✧
-    </div>
-
+    <div class="library-title">your widget library ✧</div>
     <div id="widgetGrid" class="widget-grid"></div>
   </div>
 

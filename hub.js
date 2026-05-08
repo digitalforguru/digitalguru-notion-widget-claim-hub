@@ -117,7 +117,14 @@ function renderWidgets(unlockedKeys = []) {
     card.innerHTML = `
       <div class="status-row">
         ${widget.status.map(tag => `<span class="status-pill">${tag}</span>`).join("")}
-        <span class="lock-pill">${isUnlocked ? "unlocked ✧" : "locked 🔒"}</span>
+        <span class="lock-pill">
+  <img 
+    class="lock-icon" 
+    src="${isUnlocked ? "unlocked.png" : "locked.png"}" 
+    alt="${isUnlocked ? "unlocked" : "locked"}"
+  />
+  ${isUnlocked ? "unlocked" : "locked"}
+</span>
       </div>
 
       <div class="widget-card-title">${widget.title}</div>

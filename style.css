@@ -341,3 +341,16 @@ button,
 
   border: 1px solid rgba(255,255,255,0.08);
 }
+
+.lock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lock-icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  display: block;
+}

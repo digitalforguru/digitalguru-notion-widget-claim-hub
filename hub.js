@@ -3,67 +3,76 @@ const widgets = [
     key: "calendar",
     title: "Calendar Widget",
     label: "monthly Notion calendar",
+    status: ["planning", "builder included"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-calendar-widget/"
   },
   {
     key: "journal",
     title: "Journal Widget",
     label: "daily digital journal",
+    status: ["new", "cloud save"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-journal-widget/"
   },
   {
     key: "clock",
     title: "Live Clock Widget",
     label: "real-time clock",
+    status: ["simple", "ipad ready"],
     link: "https://digitalforguru.github.io/digitialgurus-notion-live-clock-widget/"
   },
   {
     key: "affirmations",
     title: "Daily Affirmation Widget",
     label: "soft daily affirmations",
+    status: ["wellness", "daily"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-affirmations-widget/"
   },
   {
     key: "weekly-weather",
     title: "Weekly Weather Widget",
     label: "7-day forecast",
+    status: ["weather", "builder included"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-weekly-weather-widget/"
   },
   {
     key: "countdown",
     title: "Countdown Widget",
     label: "count down to anything",
+    status: ["popular", "customizable"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-countdown-widget/"
   },
   {
     key: "mood",
     title: "Mood Tracker Widget",
     label: "weekly mood tracker",
+    status: ["cloud save", "ipad optimized"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-mood-tracker-widget/"
   },
   {
     key: "vision-board",
     title: "Vision Board Widget",
     label: "mini aesthetic board",
+    status: ["aesthetic", "visual"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-grid-vision-board-widget/"
   },
   {
     key: "horoscope",
     title: "Horoscope Widget",
     label: "daily zodiac vibes",
+    status: ["daily", "fun"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-horoscope-widget/"
   },
   {
     key: "weather",
     title: "Weather Widget",
     label: "current weather card",
+    status: ["weather", "live"],
     link: "https://digitalforguru.github.io/digitalgurus-notion-weather-widget/"
   }
 ];
 
 const accessCodes = {
   DGALL2026: ["all"],
-
   DGCALENDAR2026: ["calendar"],
   DGJOURNAL2026: ["journal"],
   DGCLOCK2026: ["clock"],
@@ -79,54 +88,64 @@ const accessCodes = {
 const accessInput = document.getElementById("accessInput");
 const unlockBtn = document.getElementById("unlockBtn");
 const accessMessage = document.getElementById("accessMessage");
-
 const widgetLibrary = document.getElementById("widgetLibrary");
 const widgetGrid = document.getElementById("widgetGrid");
 
-function getUnlockedWidgets(code) {
-  const unlocked = accessCodes[code];
+let currentUnlocked = [];
 
-  if (!unlocked) return [];
-
-  if (unlocked.includes("all")) return widgets;
-
-  return widgets.filter(widget => unlocked.includes(widget.key));
+function getUnlockedKeys(code) {
+  return accessCodes[code] || [];
 }
 
-function renderWidgets(unlockedWidgets) {
+function renderWidgets(unlockedKeys = []) {
   widgetGrid.innerHTML = "";
 
-  unlockedWidgets.forEach(widget => {
-    const card = document.createElement("a");
+  const unlocksAll = unlockedKeys.includes("all");
 
-    card.className = "widget-card";
-    card.href = widget.link;
-    card.target = "_blank";
+  widgets.forEach(widget => {
+    const isUnlocked = unlocksAll || unlockedKeys.includes(widget.key);
+
+    const card = document.createElement(isUnlocked ? "a" : "div");
+
+    card.className = `widget-card ${isUnlocked ? "unlocked" : "locked"}`;
+
+    if (isUnlocked) {
+      card.href = widget.link;
+      card.target = "_blank";
+    }
 
     card.innerHTML = `
+      <div class="status-row">
+        ${widget.status.map(tag => `<span class="status-pill">${tag}</span>`).join("")}
+        <span class="lock-pill">${isUnlocked ? "unlocked ✧" : "locked 🔒"}</span>
+      </div>
+
       <div class="widget-card-title">${widget.title}</div>
       <div class="widget-card-label">${widget.label}</div>
     `;
 
     widgetGrid.appendChild(card);
   });
+
+  widgetLibrary.classList.remove("hidden");
 }
 
 function unlockWidgets() {
   const code = accessInput.value.trim().toUpperCase();
-  const unlockedWidgets = getUnlockedWidgets(code);
+  const unlockedKeys = getUnlockedKeys(code);
 
-  if (!unlockedWidgets.length) {
+  if (!unlockedKeys.length) {
     accessMessage.textContent = "code not found, try again ✧";
-    widgetLibrary.classList.add("hidden");
+    currentUnlocked = [];
+    renderWidgets([]);
     return;
   }
 
+  currentUnlocked = unlockedKeys;
   localStorage.setItem("digitalguruAccessCode", code);
 
   accessMessage.textContent = "unlocked ✧";
-  renderWidgets(unlockedWidgets);
-  widgetLibrary.classList.remove("hidden");
+  renderWidgets(currentUnlocked);
 }
 
 unlockBtn.addEventListener("click", unlockWidgets);
@@ -138,15 +157,16 @@ accessInput.addEventListener("keydown", (e) => {
 window.addEventListener("DOMContentLoaded", () => {
   const savedCode = localStorage.getItem("digitalguruAccessCode");
 
-  if (!savedCode) return;
+  if (savedCode) {
+    accessInput.value = savedCode;
+    currentUnlocked = getUnlockedKeys(savedCode);
 
-  accessInput.value = savedCode;
-
-  const unlockedWidgets = getUnlockedWidgets(savedCode);
-
-  if (unlockedWidgets.length) {
-    accessMessage.textContent = "welcome back ✧";
-    renderWidgets(unlockedWidgets);
-    widgetLibrary.classList.remove("hidden");
+    if (currentUnlocked.length) {
+      accessMessage.textContent = "welcome back ✧";
+      renderWidgets(currentUnlocked);
+      return;
+    }
   }
+
+  renderWidgets([]);
 });

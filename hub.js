@@ -82,6 +82,12 @@ const widgets = [
 ];
 
 const accessCodes = {
+  DGLAUNCHURU: [
+  "calendar",
+  "clock",
+  "horoscope",
+  "weather"
+],
   DGALL2026: ["all"],
   DGCALENDAR2026: ["calendar"],
   DGJOURNAL2026: ["journal"],

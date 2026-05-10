@@ -88,7 +88,7 @@ const accessCodes = {
   "horoscope",
   "weather"
 ],
-  MYDGWIDGETS: ["all"],
+  MYDGWIDGETS: ["all"]
 };
 
 const accessInput = document.getElementById("accessInput");

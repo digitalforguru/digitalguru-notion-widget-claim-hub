@@ -88,17 +88,7 @@ const accessCodes = {
   "horoscope",
   "weather"
 ],
-  DGALL2026: ["all"],
-  DGCALENDAR2026: ["calendar"],
-  DGJOURNAL2026: ["journal"],
-  DGCLOCK2026: ["clock"],
-  DGAFFIRM2026: ["affirmations"],
-  DGWEEKLY2026: ["weekly-weather"],
-  DGCOUNTDOWN2026: ["countdown"],
-  DGMOOD2026: ["mood"],
-  DGVISION2026: ["vision-board"],
-  DGHORO2026: ["horoscope"],
-  DGWEATHER2026: ["weather"]
+  MYDGWIDGETS: ["all"],
 };
 
 const accessInput = document.getElementById("accessInput");

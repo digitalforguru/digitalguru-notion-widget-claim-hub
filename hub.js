@@ -82,6 +82,11 @@ const widgets = [
 ];
 
 const accessCodes = {
+  mylifedash: [
+  "affirmations",
+  "clock",
+  "weather"
+],
   DGLAUNCHURU: [
   "calendar",
   "clock",

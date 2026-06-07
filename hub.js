@@ -82,17 +82,8 @@ const widgets = [
 ];
 
 const accessCodes = {
-  mylifedash: [
-  "affirmations",
-  "clock",
-  "weather"
-],
-  DGLAUNCHURU: [
-  "calendar",
-  "clock",
-  "horoscope",
-  "weather"
-],
+  MYLIFEDASH: ["affirmations", "clock", "weather"],
+  DGLAUNCHURU: ["calendar", "clock", "horoscope", "weather"],
   MYDGWIDGETS: ["all"]
 };
 
@@ -104,38 +95,51 @@ const widgetGrid = document.getElementById("widgetGrid");
 
 let currentUnlocked = [];
 
+function normalizeCode(code) {
+  return code.trim().toUpperCase();
+}
+
 function getUnlockedKeys(code) {
-  return accessCodes[code] || [];
+  const normalizedCode = normalizeCode(code);
+  return accessCodes[normalizedCode] || [];
+}
+
+function getVisibleWidgets(unlockedKeys = []) {
+  if (unlockedKeys.includes("all")) {
+    return widgets;
+  }
+
+  return widgets.filter((widget) => unlockedKeys.includes(widget.key));
 }
 
 function renderWidgets(unlockedKeys = []) {
   widgetGrid.innerHTML = "";
 
-  const unlocksAll = unlockedKeys.includes("all");
+  const visibleWidgets = getVisibleWidgets(unlockedKeys);
 
-  widgets.forEach(widget => {
-    const isUnlocked = unlocksAll || unlockedKeys.includes(widget.key);
+  if (!visibleWidgets.length) {
+    widgetLibrary.classList.add("hidden");
+    return;
+  }
 
-    const card = document.createElement(isUnlocked ? "a" : "div");
+  visibleWidgets.forEach((widget) => {
+    const card = document.createElement("a");
 
-    card.className = `widget-card ${isUnlocked ? "unlocked" : "locked"}`;
-
-    if (isUnlocked) {
-      card.href = widget.link;
-      card.target = "_blank";
-    }
+    card.className = "widget-card unlocked";
+    card.href = widget.link;
+    card.target = "_blank";
 
     card.innerHTML = `
       <div class="status-row">
-        ${widget.status.map(tag => `<span class="status-pill">${tag}</span>`).join(" ")}
+        ${widget.status.map((tag) => `<span class="status-pill">${tag}</span>`).join(" ")}
         <span class="lock-pill">
-  <img 
-    class="lock-icon" 
-    src="${isUnlocked ? "unlocked.png" : "locked.png"}" 
-    alt="${isUnlocked ? "unlocked" : "locked"}"
-  />
-  ${isUnlocked ? "unlocked" : "locked"}
-</span>
+          <img 
+            class="lock-icon" 
+            src="unlocked.png" 
+            alt="unlocked"
+          />
+          unlocked
+        </span>
       </div>
 
       <div class="widget-card-title">${widget.title}</div>
@@ -150,12 +154,13 @@ function renderWidgets(unlockedKeys = []) {
 }
 
 function unlockWidgets() {
-  const code = accessInput.value.trim().toUpperCase();
+  const code = normalizeCode(accessInput.value);
   const unlockedKeys = getUnlockedKeys(code);
 
   if (!unlockedKeys.length) {
     accessMessage.textContent = "code not found, try again ✧";
     currentUnlocked = [];
+    localStorage.removeItem("digitalguruAccessCode");
     renderWidgets([]);
     return;
   }
@@ -163,7 +168,7 @@ function unlockWidgets() {
   currentUnlocked = unlockedKeys;
   localStorage.setItem("digitalguruAccessCode", code);
 
-  accessMessage.textContent = "unlocked ✧";
+  accessMessage.textContent = "studio unlocked ✧";
   renderWidgets(currentUnlocked);
 }
 

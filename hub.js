@@ -83,6 +83,7 @@ const widgets = [
 
 const accessCodes = {
   MYLIFEDASH: ["affirmations", "clock", "weather"],
+  STUDYSUNNYRU: ["weather"],
   DGLAUNCHURU: ["calendar", "clock", "horoscope", "weather"],
   MYDGWIDGETS: ["all"]
 };
